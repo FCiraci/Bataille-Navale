@@ -10,6 +10,8 @@ public class PanelBateau extends JPanel implements ActionListener{
 
     private JPanel pnlJoueur, pnlBot;
     private final int DIMENSION = 30;
+    private Controleur ctrl;
+    private JButton[][] tabBtnJoueur, tabBtnBot;
 
 
     public PanelBateau(Controleur ctrl) {
@@ -21,6 +23,8 @@ public class PanelBateau extends JPanel implements ActionListener{
         this.pnlJoueur.setLayout(new GridLayout(11, 11, 5, 5));
         this.pnlBot = new JPanel();
         this.pnlBot.setLayout(new GridLayout(11, 11, 5, 5));
+        this.tabBtnJoueur = new JButton[11][11];
+        this.tabBtnBot = new JButton[11][11];
     
         for (int i = 0; i < ctrl.getNbLigne(); i++) {
             for (int j = 0; j < ctrl.getNbColonne(); j++) {
@@ -43,6 +47,9 @@ public class PanelBateau extends JPanel implements ActionListener{
                     btnCaseBot.setBackground(Color.RED);
                 }
 
+                this.tabBtnJoueur[i][j] = btnCaseJoueur;
+                this.tabBtnBot[i][j] = btnCaseBot;
+
                 Dimension tailleBouton = new Dimension(DIMENSION, DIMENSION);
 
                 btnCaseJoueur.setPreferredSize(tailleBouton);
@@ -62,9 +69,22 @@ public class PanelBateau extends JPanel implements ActionListener{
 
     public void actionPerformed(ActionEvent e)
     {
-        String clique = e.getActionCommand();
 
-        if(e.getSource())
+        JButton source = (JButton)e.getSource();
+
+        for(int i = 0; i < tabBtnBot.length; i++)
+        {
+            for(int j = 0; j < tabBtnBot[0].length; j++)
+            {
+                if(source == tabBtnBot[i][j])
+                {
+                    if(ctrl.toucher(i, j))
+                    {
+                        System.out.println("Vous avez toucher le bateau adverse en i = " + i + " | j = " + j);
+                    }
+                }
+            }
+        }
     }
     
 }

@@ -57,14 +57,15 @@ public class Controleur {
     }
 
     public boolean toucher(int i, int j) {
-        boolean bOk = false;
-        if (getCaseBot(i, j).getValeur() >= 2 && getCaseBot(i, j).getValeur() <= 5) {
-            bOk = true;
-            plateauJ.setCase(i, j, new Case(0));
-            System.out.println("Bateau touché en position " + i + " " + j);
-        }
-        return bOk;
+    boolean bOk = false;
+    if (getCaseBot(i, j).getValeur() >= 2 && getCaseBot(i, j).getValeur() <= 5) {
+        bOk = true;
+        plateauBot.setCase(i, j, new Case(0));
+        System.out.println("Bateau touché en position " + i + " " + j);
     }
+    return bOk;
+}
+
 
     public String toString() {
         return plateauJ.toString();
