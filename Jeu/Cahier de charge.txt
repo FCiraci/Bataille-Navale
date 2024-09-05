@@ -1,0 +1,49 @@
+comment va fonctionner ?
+
+2 listes majeurs :
+
+une liste pour le plateau de jeu : Cases numérotées de 1 à 10 horizontalement et de A à J verticalement
+
+une liste de liste pour les bateau : Cuirassé 4 cases | Sous-marin et croiseur 3 cases | 2 torpilleurs 2 cases
+
+Les bateau toujours positionné verticalement ou horizontalement
+
+Couleur général de l'IHM en bleu
+coloré la case en Blanc si non touché 
+coloré la case en Rouge si touché
+
+A chaque touche la case du tableau ou se situe le bateau touche va passe à -1 ou null (a voir avec l'implementation de l'IHM)
+
+
+
+Question ? 
+
+
+Comment vont se positionne les bateau en rapport aux indices du tableau
+
+
+Procédé:
+
+d'abord essayer de coder le jeu sans IHM avec qu'un seul bateau
+
+
+
+
+	private Plateau[][] initPlateau()
+	{
+
+		Plateau[][] tabInit;
+
+		tabInit = new Plateau[getNbLigne()][getNbLigne()];
+
+		for(int i = 0; i < tabInit.length; i++)
+		{
+			for(int j = 0; j < tabInit.length; j++)
+			{
+				tabInit =  new Plateau[i][j];	
+			}
+		}
+		this.plateau = tabInit;
+		
+		return this.plateau;
+	}

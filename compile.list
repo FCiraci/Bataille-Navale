@@ -1,0 +1,4 @@
+javac Jeu/metier/*.java
+javac Jeu/ihm/*.java
+javac Jeu/Controleur.java
+java -cp . Jeu.ihm.FrameBatailleNavale
