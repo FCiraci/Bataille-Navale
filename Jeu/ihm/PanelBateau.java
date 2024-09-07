@@ -16,6 +16,7 @@ public class PanelBateau extends JPanel implements ActionListener{
 
     public PanelBateau(Controleur ctrl) {
         this.setLayout(new GridLayout(2, 1, 20, 20));
+        this.ctrl = ctrl;
         ctrl.initPlateauBot();
         ctrl.initPlateauJ();
     
@@ -80,6 +81,7 @@ public class PanelBateau extends JPanel implements ActionListener{
                 {
                     if(ctrl.toucher(i, j))
                     {
+                        tabBtnBot[i][j].setBackground(Color.RED);
                         System.out.println("Vous avez toucher le bateau adverse en i = " + i + " | j = " + j);
                     }
                 }
