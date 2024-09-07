@@ -42,9 +42,11 @@ public class PanelBateau extends JPanel implements ActionListener{
     
                 if (ctrl.getCaseBot(i, j).getValeur() == 0) {
                     btnCaseBot.setBackground(Color.BLUE);
-                } else if (ctrl.getCaseBot(i, j).getValeur() == 2 || ctrl.getCaseBot(i, j).getValeur() == 3 || ctrl.getCaseBot(i, j).getValeur() == 4 || ctrl.getCaseBot(i, j).getValeur() == 5) {
-                    btnCaseBot.setBackground(Color.DARK_GRAY);
-                } else if (ctrl.getCaseBot(i, j).getValeur() == 10) {
+                } 
+                else if (ctrl.getCaseBot(i, j).getValeur() == 2 || ctrl.getCaseBot(i, j).getValeur() == 3 || ctrl.getCaseBot(i, j).getValeur() == 4 || ctrl.getCaseBot(i, j).getValeur() == 5) {
+                    btnCaseBot.setBackground(Color.BLUE);
+                } 
+                else if (ctrl.getCaseBot(i, j).getValeur() == 10) {
                     btnCaseBot.setBackground(Color.RED);
                 }
 
