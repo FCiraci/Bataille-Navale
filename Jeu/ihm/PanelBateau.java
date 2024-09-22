@@ -45,7 +45,7 @@ public class PanelBateau extends JPanel implements ActionListener{
                     btnCaseBot.setBackground(Color.BLUE);
                 } 
                 else if (ctrl.getCaseBot(i, j).getValeur() >= 2 && ctrl.getCaseBot(i, j).getValeur() <= 7 ) {
-                    btnCaseBot.setBackground(Color.DARK_GRAY);
+                    btnCaseBot.setBackground(Color.BLUE);
                 } 
                 else if (ctrl.getCaseBot(i, j).getValeur() == 10) {
                     btnCaseBot.setBackground(Color.RED);
@@ -130,6 +130,12 @@ public class PanelBateau extends JPanel implements ActionListener{
     {
         int i, j;
 
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        
         i = (int) (Math.random() * ctrl.getNbLigne());
         j = (int) (Math.random() * ctrl.getNbColonne());
 
@@ -141,6 +147,7 @@ public class PanelBateau extends JPanel implements ActionListener{
                 tabBtnJoueur[i][j].setBackground(Color.RED);
                 tabBtnJoueur[i][j].setEnabled(false);
                 System.out.println("Le BOT à toucher votre beateau en i = " + i + " | j = " + j +".\n");
+                jouerBot();
             }
             else
             {
