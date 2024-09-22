@@ -76,7 +76,7 @@
                 Bateau bateauToucher = tabBateauBot[chercherBateauParValeur(caseBot.getValeur(), tabBateauBot)];
                 bateauToucher.toucher();
                 bOk = true;
-                plateauBot.setCase(i, j, new Case(10)); // Marquer la case comme touchée
+                plateauBot.setCase(i, j, new Case(10));
                 if (bateauToucher.estCouler()) {
                     System.out.println("VOUS AVEZ COULER LE " + bateauToucher.getNom().toUpperCase() + " DU BOT ! \n");
                 }
@@ -92,7 +92,7 @@
                 Bateau bateauToucher = tabBateauJoueur[chercherBateauParValeur(caseJoueur.getValeur(), tabBateauJoueur)];
                 bateauToucher.toucher();
                 bOk = true;
-                plateauJ.setCase(i, j, new Case(10)); // Marquer la case comme touchée
+                plateauJ.setCase(i, j, new Case(10));
                 if (bateauToucher.estCouler()) {
                     System.out.println("LE BOT A COULÉ VOTRE " + bateauToucher.getNom().toUpperCase() + " ! \n");
                 }
@@ -106,7 +106,7 @@
                     return i;
                 }
             }
-            return -1; // Si aucun bateau n'est trouvé (ce cas ne devrait normalement pas se produire)
+            return -1;
         }
         
 

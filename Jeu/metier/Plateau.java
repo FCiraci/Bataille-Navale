@@ -35,7 +35,6 @@ public class Plateau {
         this.plateauInitiale[i][j] = nvlCase;
     }
 
-    // Méthode pour placer les bateaux sur le plateau
     public void placerBateau(Bateau[] tabBateau) {
         for (Bateau bateau : tabBateau) {
             boolean placer = false;
@@ -51,7 +50,6 @@ public class Plateau {
         }
     }
 
-    // Méthode pour vérifier si un bateau peut être placé à une position donnée
     public boolean peutPlacerBateau(Bateau bateau, int i, int j, char dir) {
         int taille = bateau.getTaille();
         switch (dir) {
@@ -83,7 +81,6 @@ public class Plateau {
         return true;
     }
 
-    // Méthode pour placer effectivement le bateau sur le plateau
     public void placementBateau(Bateau bateau, int i, int j, char dir) {
         int taille = bateau.getTaille();
         for (int k = 0; k < taille; k++) {
