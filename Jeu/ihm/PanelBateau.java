@@ -9,7 +9,6 @@ import Jeu.Controleur;
 public class PanelBateau extends JPanel implements ActionListener{
 
     private JPanel pnlJoueur, pnlBot;
-    private final int DIMENSION = 30;
     private Controleur ctrl;
     private JButton[][] tabBtnJoueur, tabBtnBot;
 
@@ -34,17 +33,19 @@ public class PanelBateau extends JPanel implements ActionListener{
     
                 if (ctrl.getCaseJoueur(i, j).getValeur() == 0) {
                     btnCaseJoueur.setBackground(Color.BLUE);
-                } else if (ctrl.getCaseJoueur(i, j).getValeur() == 2 || ctrl.getCaseJoueur(i, j).getValeur() == 3 || ctrl.getCaseJoueur(i, j).getValeur() == 4 || ctrl.getCaseJoueur(i, j).getValeur() == 5) {
+                } 
+                else if (ctrl.getCaseJoueur(i, j).getValeur() >= 2 && ctrl.getCaseJoueur(i, j).getValeur() <= 7 ) {
                     btnCaseJoueur.setBackground(Color.DARK_GRAY);
-                } else if (ctrl.getCaseJoueur(i, j).getValeur() == 10) {
+                } 
+                else if (ctrl.getCaseJoueur(i, j).getValeur() == 10) {
                     btnCaseJoueur.setBackground(Color.RED);
                 }
     
                 if (ctrl.getCaseBot(i, j).getValeur() == 0) {
                     btnCaseBot.setBackground(Color.BLUE);
                 } 
-                else if (ctrl.getCaseBot(i, j).getValeur() == 2 || ctrl.getCaseBot(i, j).getValeur() == 3 || ctrl.getCaseBot(i, j).getValeur() == 4 || ctrl.getCaseBot(i, j).getValeur() == 5) {
-                    btnCaseBot.setBackground(Color.BLUE);
+                else if (ctrl.getCaseBot(i, j).getValeur() >= 2 && ctrl.getCaseBot(i, j).getValeur() <= 7 ) {
+                    btnCaseBot.setBackground(Color.DARK_GRAY);
                 } 
                 else if (ctrl.getCaseBot(i, j).getValeur() == 10) {
                     btnCaseBot.setBackground(Color.RED);
@@ -52,11 +53,6 @@ public class PanelBateau extends JPanel implements ActionListener{
 
                 this.tabBtnJoueur[i][j] = btnCaseJoueur;
                 this.tabBtnBot[i][j] = btnCaseBot;
-
-                Dimension tailleBouton = new Dimension(DIMENSION, DIMENSION);
-
-                btnCaseJoueur.setPreferredSize(tailleBouton);
-                btnCaseBot.setPreferredSize(tailleBouton);
 
                 btnCaseBot.addActionListener(this);
 
@@ -70,9 +66,10 @@ public class PanelBateau extends JPanel implements ActionListener{
         this.setVisible(true);
     }
 
+    
+
     public void actionPerformed(ActionEvent e)
     {
-
         JButton source = (JButton)e.getSource();
 
         for(int i = 0; i < tabBtnBot.length; i++)
@@ -81,13 +78,100 @@ public class PanelBateau extends JPanel implements ActionListener{
             {
                 if(source == tabBtnBot[i][j])
                 {
-                    if(ctrl.toucher(i, j))
+                    if(ctrl.toucherBot(i, j))
                     {
+                        ctrl.setTourDuJoueur(true);
                         tabBtnBot[i][j].setBackground(Color.RED);
-                        System.out.println("Vous avez toucher le bateau adverse en i = " + i + " | j = " + j);
+                        tabBtnBot[i][j].setEnabled(false);
+                        System.out.println("Vous avez toucher le bateau adverse en i = " + i + " | j = " + j +".\n");
+                    }
+                    else
+                    {
+                        if(!ctrl.estDejaToucher(i, j, true))
+                        {
+                            ctrl.setTourDuJoueur(false);
+                            tabBtnBot[i][j].setBackground(Color.GRAY);
+                            tabBtnBot[i][j].setEnabled(false);
+                            System.out.println("Vous avez tirer en i = " + i + " | j = " + j + ".\n Mais vous avez raté.\n");
+                        }
+                        try {
+                            Thread.sleep(300);
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+                        jouerBot();
                     }
                 }
             }
+        }
+        if(ctrl.aGagneJoueur())
+        {
+            JOptionPane.showMessageDialog(this, "Félicitations, vous avez gagné la partie !", "Victoire", JOptionPane.INFORMATION_MESSAGE);
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            System.exit(0);
+        }
+        if(ctrl.aGagnerBot())
+        {
+            JOptionPane.showMessageDialog(this, "Le BOT a gagné la partie !", "Défaite", JOptionPane.INFORMATION_MESSAGE);
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            System.exit(0);
+        }
+    }
+
+    public void jouerBot()
+    {
+        int i, j;
+
+        i = (int) (Math.random() * ctrl.getNbLigne());
+        j = (int) (Math.random() * ctrl.getNbColonne());
+
+        if(!ctrl.estTourJoueur())
+        {
+            if(ctrl.toucherJoueur(i, j))
+            {
+                ctrl.setTourDuJoueur(false);
+                tabBtnJoueur[i][j].setBackground(Color.RED);
+                tabBtnJoueur[i][j].setEnabled(false);
+                System.out.println("Le BOT à toucher votre beateau en i = " + i + " | j = " + j +".\n");
+            }
+            else
+            {
+                if(!ctrl.estDejaToucher(i, j, false))
+                {
+                    ctrl.setTourDuJoueur(true);
+                    tabBtnJoueur[i][j].setBackground(Color.GRAY);
+                    System.out.println("Le BOT à tirer en i = " + i + " | j = " + j + ".\n Mais il a raté. \n"); 
+                }
+                tabBtnJoueur[i][j].setEnabled(false);
+            }
+        }
+        if(ctrl.aGagneJoueur())
+        {
+            JOptionPane.showMessageDialog(this, "Félicitations, vous avez gagné la partie !", "Victoire", JOptionPane.INFORMATION_MESSAGE);
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            System.exit(0);
+        }
+        if(ctrl.aGagnerBot())
+        {
+            JOptionPane.showMessageDialog(this, "Le BOT a gagné la partie !", "Défaite", JOptionPane.INFORMATION_MESSAGE);
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            System.exit(0);
         }
     }
     

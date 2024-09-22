@@ -38,16 +38,14 @@ public class Plateau {
     // Méthode pour placer les bateaux sur le plateau
     public void placerBateau(Bateau[] tabBateau) {
         for (Bateau bateau : tabBateau) {
-            for (int n = 0; n < bateau.getNbBateau(); n++) {
-                boolean placer = false;
-                while (!placer) {
-                    int i = (int) (Math.random() * 11);
-                    int j = (int) (Math.random() * 11);
-                    char dir = direction[(int) (Math.random() * direction.length)];
-                    if (peutPlacerBateau(bateau, i, j, dir)) {
-                        placementBateau(bateau, i, j, dir);
-                        placer = true;
-                    }
+            boolean placer = false;
+            while (!placer) {
+                int i = (int) (Math.random() * 11);
+                int j = (int) (Math.random() * 11);
+                char dir = direction[(int) (Math.random() * direction.length)];
+                if (peutPlacerBateau(bateau, i, j, dir)) {
+                    placementBateau(bateau, i, j, dir);
+                    placer = true;
                 }
             }
         }

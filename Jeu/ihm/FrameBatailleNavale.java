@@ -26,7 +26,8 @@ public class FrameBatailleNavale extends JFrame{
 		this.add(this.panelBateau);
 	
 		this.setVisible(true);
-		System.out.println("La Frame devrait être visible.");
+		System.out.println("La Frame devrait être visible. \n\n");
+
 	}
 
 	public static void main(String[] args) {
