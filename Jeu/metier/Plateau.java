@@ -8,7 +8,7 @@ public class Plateau {
 	public Plateau() {
 		this.plateauInitiale = new Case[11][11];
 		this.initPlateau();
-        this.direction = new char[] {'H', 'B', 'G', 'D'}; // Déplacement ici car utilisé par placerBateau
+        this.direction = new char[] {'H', 'B', 'G', 'D'};
 	}
 
 	public void initPlateau() {

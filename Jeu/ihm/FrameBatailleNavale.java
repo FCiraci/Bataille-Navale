@@ -1,8 +1,7 @@
 package Jeu.	ihm;
+
 import javax.swing.*;
-
 import Jeu.Controleur;
-
 import java.awt.*;
 
 
