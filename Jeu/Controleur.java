@@ -2,6 +2,14 @@
 
     import Jeu.metier.*;
 
+    /**
+    * @author Furkan Ciraci
+    * @year 2ème année
+    * @course BUT Informatique
+    * @university Université Le Havre Normandie
+    * @version 1.0
+    */
+
     public class Controleur {
         
         private Plateau plateauJ, plateauBot;
