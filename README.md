@@ -6,6 +6,7 @@
 **Prénom** : Furkan 
 **Formation** : 2ème Année - BUT Informatique 
 **Université** : Université Le Havre
+**Email** : furkan.ciraci@icloud.com
 
 ## Description du projet
 
